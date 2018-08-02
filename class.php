@@ -8,7 +8,7 @@
 set_time_limit(0);
 $conexao = mysql_connect("host","user","pass");
 $db = mysql_select_db("pass");
-// valores padrıes de variaveirs
+// valores padr√µes de variaveirs
 $id_modulo = 1;
 $txt_sql = "";
 $txt_sql_modulo = "";
@@ -17,7 +17,7 @@ $txt_sql_modulo = "";
 // recuperando nomes de tabelas/ ou unica
 $sql = mysql_query("SELECT TABLE_NAME
 FROM INFORMATION_SCHEMA.TABLES
-WHERE (TABLE_SCHEMA = 'databaseName' OR TABLE_SCHEMA = 'pedidos') AND TABLE_NAME = 'tableName'
+WHERE (TABLE_SCHEMA = 'databaseName' OR TABLE_SCHEMA = 'tableName') AND TABLE_NAME = 'tableName'
 ORDER BY TABLE_NAME ");
 while($linha = mysql_fetch_array($sql))
 {
@@ -156,18 +156,18 @@ while($linha = mysql_fetch_array($sql))
 
      /**
      *
-     * METODO LISTAR COM PAGINA«√O
+     * METODO LISTAR COM PAGINA√á√ÉO
      *
      */
 
 
     $classe  .="    /**\n";
-    $classe  .='    * @var $id_grupoid do grupo do usu·rio logado para definir permiÁıes'."\n";
+    $classe  .='    * @var $id_grupoid do grupo do usu√°rio logado para definir permi√ß√µes'."\n";
     $classe  .='    * @var $pagina Numero da pagina Atual'."\n";
     $classe  .='    * @var $numeroRegistros numero de registros a serem mostrados'."\n";
     $classe  .='    * @var $numeroInicioRegistro ponteiro de registro'."\n";
     $classe  .='    * @var $busca valor a ser filtrado na query'."\n";
-    $classe  .='    * @todo MÈtodo que retorna registros no formato de paginaÁ„o'."\n";
+    $classe  .='    * @todo M√©todo que retorna registros no formato de pagina√ß√£o'."\n";
     $classe  .="    */\n";
     $classe  .='    public function ListarPaginacao($id_grupo,$pagina,$numeroRegistros,$numeroInicioRegistro,$busca = "",$filtro = "",$ordem = "")'."\n";
     $classe  .="    {\n";
@@ -188,7 +188,7 @@ while($linha = mysql_fetch_array($sql))
     $classe  .="        //se ouver busca adicionado where na query\n";
     $classe  .='        if($busca != "") $sql.= " WHERE titulo LIKE \'%$busca%\'";'."\n";
     $classe  .='        if($filtro != "") $sql .=" ORDER BY $filtro $ordem"; else $sql .=" ORDER BY id DESC";'."\n";
-    $classe  .="        // definindo limite de regitros para paginaÁ„o\n";
+    $classe  .="        // definindo limite de regitros para pagina√ß√£o\n";
     $classe  .='        $sql .= " LIMIT ?,?";'."\n";
     $classe  .="        // preparando para executar PDO\n";
     $classe  .='        $stmt = $this->pdo->prepare($sql);'."\n";
@@ -278,7 +278,7 @@ while($linha = mysql_fetch_array($sql))
 	$modulo.= "\n";
 	$modulo.= '		case "adicionar_'.$linha[0].'" :' . "\n";
 	$modulo.= "\n";
-	$modulo.= "		/*Cotetando informaÁıes do Formul·rios*/\n";
+	$modulo.= "		/*Cotetando informa√ß√µes do Formul√°rios*/\n";
 	$query = mysql_query("SHOW COLUMNS FROM {$linha[0]}");
 	while($row = mysql_fetch_assoc($query))
 	{
@@ -288,12 +288,12 @@ while($linha = mysql_fetch_array($sql))
     $modulo.= '	        if($retorno == 1)' . "\n";
     $modulo.= '	        {' . "\n";
     $modulo.= '	             $msg["codigo"] = 0;' . "\n";
-    $modulo.= '	             $msg["mensagem"] = "OperaÁ„o executada com Sucesso";' . "\n";
+    $modulo.= '	             $msg["mensagem"] = "Opera√ß√£o executada com Sucesso";' . "\n";
     $modulo.= '	        }' . "\n";
     $modulo.= '	        else' . "\n";
     $modulo.= '	        {' . "\n";
     $modulo.= '	             $msg["codigo"] = 1;' . "\n";
-    $modulo.= '	             $msg["mensagem"] = "Erro ao Executar OperaÁ„o";' . "\n";
+    $modulo.= '	             $msg["mensagem"] = "Erro ao Executar Opera√ß√£o";' . "\n";
     $modulo.= '	        }' . "\n";
 
     $modulo.= '	         echo json_encode($msg);'."\n";
@@ -311,7 +311,7 @@ while($linha = mysql_fetch_array($sql))
 	$modulo.= "\n";
 	$modulo.= '		case "atualizar_'.$linha[0].'" :' . "\n";
 	$modulo.= "\n";
-	$modulo.= "		/*Cotetando informaÁıes do Formul·rios*/\n";
+	$modulo.= "		/*Cotetando informa√ß√µes do Formul√°rios*/\n";
 	$query = mysql_query("SHOW COLUMNS FROM {$linha[0]}");
 	while($row = mysql_fetch_array($query))
 	{
@@ -321,12 +321,12 @@ while($linha = mysql_fetch_array($sql))
     $modulo.= '	        if($retorno == 1)' . "\n";
     $modulo.= '	        {' . "\n";
     $modulo.= '	             $msg["codigo"] = 0;' . "\n";
-    $modulo.= '	             $msg["mensagem"] = "OperaÁ„o executada com Sucesso";' . "\n";
+    $modulo.= '	             $msg["mensagem"] = "Opera√ß√£o executada com Sucesso";' . "\n";
     $modulo.= '	        }' . "\n";
     $modulo.= '	        else' . "\n";
     $modulo.= '	        {' . "\n";
     $modulo.= '	             $msg["codigo"] = 1;' . "\n";
-    $modulo.= '	             $msg["mensagem"] = "Erro ao Executar OperaÁ„o";' . "\n";
+    $modulo.= '	             $msg["mensagem"] = "Erro ao Executar Opera√ß√£o";' . "\n";
     $modulo.= '	        }' . "\n";
     $modulo.= '	         echo json_encode($msg);'."\n";
 	$modulo.= '			$template = "ajax.'.$linha[0].'.php";' . "\n";
@@ -349,12 +349,12 @@ while($linha = mysql_fetch_array($sql))
     $modulo.= '	        if($retorno == 1)' . "\n";
     $modulo.= '	        {' . "\n";
     $modulo.= '	             $msg["codigo"] = 0;' . "\n";
-    $modulo.= '	             $msg["mensagem"] = "OperaÁ„o executada com Sucesso";' . "\n";
+    $modulo.= '	             $msg["mensagem"] = "Opera√ß√£o executada com Sucesso";' . "\n";
     $modulo.= '	        }' . "\n";
     $modulo.= '	        else' . "\n";
     $modulo.= '	        {' . "\n";
     $modulo.= '	             $msg["codigo"] = 1;' . "\n";
-    $modulo.= '	             $msg["mensagem"] = "Erro ao Executar OperaÁ„o";' . "\n";
+    $modulo.= '	             $msg["mensagem"] = "Erro ao Executar Opera√ß√£o";' . "\n";
     $modulo.= '	        }' . "\n";
     $modulo.= '	         echo json_encode($msg);'."\n";
 	$modulo.= '			}'."\n";
@@ -458,14 +458,14 @@ while($linha = mysql_fetch_array($sql))
 
     /**
      *
-     * INICIO DO FORMUL¡RIO , CHECANDO DADOS
+     * INICIO DO FORMUL√ÅRIO , CHECANDO DADOS
      *
      */
     $formulario = "";
     $formulario .= "<form action=\"#\" method=\"post\" name=\"log\" id=\"log\" class=\"form_ajax\" style=\"width:100%;\">\n";
     $formulario .= '<input type="hidden" value="<?=$linha->getId();?>"name="id" id="id" />' ."\n";
     $formulario .= "<fieldset>\n";
-    $formulario .= "<legend>Formul·rio de Cadastro</legend>\n";
+    $formulario .= "<legend>Formul√°rio de Cadastro</legend>\n";
     $query = mysql_query("SHOW COLUMNS FROM {$linha[0]}");
 	while($row = mysql_fetch_array($query))
 	{
@@ -486,26 +486,26 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='       '."\n";
     $js_list .='        /**'."\n";
     $js_list .='        CarregarDialog(\'#div_form\');'."\n";
-    $js_list .='        * AÁ„o do Bot„o Adicionar'."\n";
+    $js_list .='        * A√ß√£o do Bot√£o Adicionar'."\n";
     $js_list .='        *'."\n";
     $js_list .='        */'."\n";
     $js_list .='       $(\'#botao_adicionar\').button().click('."\n";
     $js_list .='        function()'."\n";
     $js_list .='        {'."\n";
     $js_list .='            // div para criar os formularios'."\n";
-    $js_list .='            // quando houver aÁ„o do click ele vai criar o objeto dialog'."\n";
+    $js_list .='            // quando houver a√ß√£o do click ele vai criar o objeto dialog'."\n";
     $js_list .='           $(\'#div_form\').dialog('."\n";
     $js_list .='           {'."\n";
     $js_list .='                title: \'Adicionar'.ucwords(str_replace("_"," ",$linha[0])).'\', // titulo da janela'."\n";
     $js_list .='                height: 450, // altura da janela'."\n";
     $js_list .='                width: 350, // largura da janela'."\n";
     $js_list .='                modal: true, // abilita MODAL (modal e o escurecimento de tela)'."\n";
-    $js_list .='                // mostra botıes na janela'."\n";
+    $js_list .='                // mostra bot√µes na janela'."\n";
     $js_list .='                buttons: [{'."\n";
     
     
     
-    $js_list .='                    // criando bot„o salvar'."\n";
+    $js_list .='                    // criando bot√£o salvar'."\n";
     $js_list .='                    text : "Salvar",'."\n";
     $js_list .='                    class : "btn btn-success",'."\n";
     $js_list .='				    click: function() '."\n";
@@ -517,7 +517,7 @@ while($linha = mysql_fetch_array($sql))
 	{
         $js_list .='                         if($(\'#'.$row['Field'].'\').val() == "")'."\n";
         $js_list .='                         {'."\n";
-        $js_list .='                            msg_form = msg_form + " '.$row['Field'].' n„o pode ser em branco.<br>";'."\n";
+        $js_list .='                            msg_form = msg_form + " '.$row['Field'].' n√£o pode ser em branco.<br>";'."\n";
         $js_list .='                            resultado = false;'."\n";
         $js_list .='                         }'."\n";
 	}
@@ -526,7 +526,7 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                             // ao clicar em salvar enviando dados por post via AJAX'."\n";
     $js_list .='                             $.post("index_xml.php?app_modulo='.$linha[0].'&app_comando=adicionar_'.$linha[0].'",'."\n";
     $js_list .='                             { '."\n";
-    $js_list .='                                    // defininco parametros que ser„o apssados junto com o POST'."\n";
+    $js_list .='                                    // defininco parametros que ser√£o apssados junto com o POST'."\n";
     $campos = '';
     $rw = array();
    	$query = mysql_query("SHOW COLUMNS FROM {$linha[0]}");
@@ -540,9 +540,9 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                             // pegando resposta do retorno do post'."\n";
     $js_list .='                             function(response)'."\n";
     $js_list .='                             {'."\n";
-    $js_list .='                                var nome_dialog = "AtenÁ„o";'."\n";
+    $js_list .='                                var nome_dialog = "Aten√ß√£o";'."\n";
     $js_list .='                                // gerando mensagens de erro'."\n";
-    $js_list .='                                msg = \'<div class="erro_ajax"><h1>N√O HOUVE NENHUMA MENSAGEM</h1></div>\''."\n";
+    $js_list .='                                msg = \'<div class="erro_ajax"><h1>N√ÉO HOUVE NENHUMA MENSAGEM</h1></div>\''."\n";
     $js_list .='                                if(response["codigo"] == 0)'."\n";
     $js_list .='                                {'."\n";
     $js_list .='                                   msg = response["mensagem"];'."\n";
@@ -554,7 +554,7 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                                {'."\n";
     $js_list .='                                   msg = response["mensagem"];'."\n";
     $js_list .='                                }'."\n";
-    $js_list .='                                // chamando funÁ„o para mostrar mesagem no formato padr„o'."\n";
+    $js_list .='                                // chamando fun√ß√£o para mostrar mesagem no formato padr√£o'."\n";
     $js_list .='                                alertJquery(msg,nome_dialog);'."\n";
     $js_list .='                              }'."\n";
     $js_list .='                              , "json" // definindo retorno para o formato json'."\n";
@@ -566,7 +566,7 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                        }'."\n";
     $js_list .='                        else'."\n";
     $js_list .='                        {'."\n";
-    $js_list .='                            alertJquery(msg_form,"AtenÁ„o");'."\n";
+    $js_list .='                            alertJquery(msg_form,"Aten√ß√£o");'."\n";
     $js_list .='                        }'."\n";
     $js_list .='				    }},'."\n";
     
@@ -601,7 +601,7 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                {'."\n";
     $js_list .='                    jQuery(this).dialog("destroy").empty();'."\n";
     $js_list .='                },'."\n";
-    $js_list .='                // definindo aÁ„o de load do template para a janela'."\n";
+    $js_list .='                // definindo a√ß√£o de load do template para a janela'."\n";
     $js_list .='                open: function ()'."\n";
     $js_list .='                {'."\n";
     $js_list .='                    jQuery(this).load(\'index_xml.php?app_modulo='.$linha[0].'&app_comando=frm_adicionar_'.$linha[0].'\');'."\n";
@@ -611,13 +611,13 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='           }'."\n";
     $js_list .='           );            '."\n";
     $js_list .='        });'."\n";
-    $js_list .='        /* Fim  da aÁ„o para o bot„o adicionar */'."\n";
+    $js_list .='        /* Fim  da a√ß√£o para o bot√£o adicionar */'."\n";
     $js_list .='        '."\n";
     $js_list .='        '."\n";
     $js_list .='        $(\'#botoww\').button();'."\n";
     $js_list .='        '."\n";
     $js_list .='        '."\n";
-    $js_list .='        //Inicio da funÁ„o do bot„o excluir'."\n";
+    $js_list .='        //Inicio da fun√ß√£o do bot√£o excluir'."\n";
     $js_list .='        $(\'#botao_deletar\').button().click(function()'."\n";
     $js_list .='        {'."\n";
     $js_list .='            var checked = $("input[name=\'lista[]\']:checked").length;'."\n";
@@ -627,7 +627,7 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                $.each($("input[name=\'lista[]\']:checked"), function() {'."\n";
     $js_list .='                    values.push($(this).val());'."\n";
     $js_list .='                });'."\n";
-    $js_list .='                confirmJquery(\'Deseja realmente remover este(s) registros(s)?<br>ID¥s (\'+values+\')\',\'Alerta do Sistema\',values,ExcluirRegistros);'."\n";
+    $js_list .='                confirmJquery(\'Deseja realmente remover este(s) registros(s)?<br>ID¬¥s (\'+values+\')\',\'Alerta do Sistema\',values,ExcluirRegistros);'."\n";
     $js_list .='            }'."\n";
     $js_list .='            else'."\n";
     $js_list .='            {'."\n";
@@ -650,9 +650,9 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='             },'."\n";
     $js_list .='             function(response)'."\n";
     $js_list .='             {'."\n";
-       $js_list .='               var nome_dialog = "AtenÁ„o";'."\n";
+       $js_list .='               var nome_dialog = "Aten√ß√£o";'."\n";
     $js_list .='                  // gerando mensagens de erro'."\n";
-    $js_list .='                   msg = \'<div class="erro_ajax"><h1>N√O HOUVE NENHUMA MENSAGEM</h1></div>\''."\n";
+    $js_list .='                   msg = \'<div class="erro_ajax"><h1>N√ÉO HOUVE NENHUMA MENSAGEM</h1></div>\''."\n";
     $js_list .='                   if(response["codigo"] == 0)'."\n";
     $js_list .='                   {'."\n";
     $js_list .='                       msg = response["mensagem"];'."\n";
@@ -663,7 +663,7 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                   {'."\n";
     $js_list .='                      msg = response["mensagem"];'."\n";
     $js_list .='                   }'."\n";
-    $js_list .='                   // chamando funÁ„o para mostrar mesagem no formato padr„o'."\n";
+    $js_list .='                   // chamando fun√ß√£o para mostrar mesagem no formato padr√£o'."\n";
     $js_list .='                    alertJquery(msg,nome_dialog);'."\n";
     $js_list .='             }'."\n";
     $js_list .='             , "json"'."\n";
@@ -671,11 +671,11 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='             AtualizarGrid(0,\'\');'."\n";
     $js_list .='            '."\n";
     $js_list .='        }'."\n";
-    $js_list .='        //fim fo bot„o excluir'."\n";
+    $js_list .='        //fim fo bot√£o excluir'."\n";
     $js_list .='        '."\n";
     $js_list .='        '."\n";
     $js_list .='        '."\n";
-    $js_list .='        /* funcÁ„o de alteraÁ„o de registros*/'."\n";
+    $js_list .='        /* func√ß√£o de altera√ß√£o de registros*/'."\n";
     $js_list .='    });'."\n";
     $js_list .='        '."\n";
     $js_list .='        function AlterarRegistro(id_registro)'."\n";
@@ -699,7 +699,7 @@ while($linha = mysql_fetch_array($sql))
 	{
         $js_list .='                         if($(\'#'.$row['Field'].'\').val() == "")'."\n";
         $js_list .='                         {'."\n";
-        $js_list .='                            msg_form = msg_form + " '.$row['Field'].' n„o pode ser em branco.<br>";'."\n";
+        $js_list .='                            msg_form = msg_form + " '.$row['Field'].' n√£o pode ser em branco.<br>";'."\n";
         $js_list .='                            resultado = false;'."\n";
         $js_list .='                         }'."\n";
 	}
@@ -720,9 +720,9 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                             },'."\n";
     $js_list .='                             function(response)'."\n";
     $js_list .='                             {'."\n";
-    $js_list .='                                var nome_dialog = "AtenÁ„o";'."\n";
+    $js_list .='                                var nome_dialog = "Aten√ß√£o";'."\n";
     $js_list .='                                // gerando mensagens de erro'."\n";
-    $js_list .='                                msg = \'<div class="erro_ajax"><h1>N√O HOUVE NENHUMA MENSAGEM</h1></div>\''."\n";
+    $js_list .='                                msg = \'<div class="erro_ajax"><h1>N√ÉO HOUVE NENHUMA MENSAGEM</h1></div>\''."\n";
     $js_list .='                                if(response["codigo"] == 0)'."\n";
     $js_list .='                                {'."\n";
     $js_list .='                                   msg = response["mensagem"];'."\n";
@@ -733,7 +733,7 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                                {'."\n";
     $js_list .='                                   msg = response["mensagem"];'."\n";
     $js_list .='                                }'."\n";
-    $js_list .='                                // chamando funÁ„o para mostrar mesagem no formato padr„o'."\n";
+    $js_list .='                                // chamando fun√ß√£o para mostrar mesagem no formato padr√£o'."\n";
     $js_list .='                                alertJquery(msg,nome_dialog);'."\n";
     $js_list .='                             }'."\n";
     $js_list .='                             , "json"'."\n";
@@ -743,7 +743,7 @@ while($linha = mysql_fetch_array($sql))
     $js_list .='                        }'."\n";
     $js_list .='                        else'."\n";
     $js_list .='                        {'."\n";
-    $js_list .='                            alertJquery(msg_form,"AtenÁ„o");'."\n";
+    $js_list .='                            alertJquery(msg_form,"Aten√ß√£o");'."\n";
     $js_list .='                        }'."\n";
     
     $js_list .='				    }},'."\n";
